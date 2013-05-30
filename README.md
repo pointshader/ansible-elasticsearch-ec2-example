@@ -53,3 +53,5 @@ Run
 -Add celebratory reward of choice
 
 -Or test your cluster by executing: curl EC2PUBLICIP:9200/_cluster/health?pretty=true
+
+Note: If Ansible complains about the local host group not existing, you may need to add 127.0.0.1 under the [local] heading in your ansible hosts file.
