@@ -24,11 +24,15 @@ Configure
 -----
 
 ### Step 1: Edit the Ansible playbook
+
+> deploy_elasticsearch.yml
 	
 -Insert your preferred keypair name, instance type, security group, AMI image, and instance count
 
 ### Step 2: Edit the Elasticsearch configuration file
 	
+> elasticsearch/elasticsearch.yml
+
 -Insert your AWS access key and secret key, and add any additional settings
 
 Run
