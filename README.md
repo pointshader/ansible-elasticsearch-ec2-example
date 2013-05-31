@@ -28,11 +28,13 @@ Ansible playbook to spin up an Elasticsearch cluster on Amazon's EC2 platform
 >deploy_elasticsearch.yml
 
 - Insert your keypair name, instance type, security group, AMI image, and instance count
->      keypair: EC2KEYPAIRNAME
->      instance_type: t1.micro
->      security_group: EC2SECURITYGROUPNAME
->      image: AMINAME
->      instance_count: 2
+
+    >keypair: EC2KEYPAIRNAME    
+    >instance_type: t1.micro    
+    >security_group: EC2SECURITYGROUPNAME   
+    >image: AMINAME     
+    >instance_count: 2      
+
 - I used ami-c30360aa (Ubuntu 13.04 64-bit), but other Ubuntu images should work.
 
 #### 2. Edit the Elasticsearch configuration file
@@ -46,27 +48,31 @@ Ansible playbook to spin up an Elasticsearch cluster on Amazon's EC2 platform
 #### 1. Export AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as variables to your shell
 	
 - Calling source on a shell script is great for this
->       #!/bin/bash
->       export AWS_ACCESS_KEY_ID='AKIA123456781234567'
->       export AWS_SECRET_ACCESS_KEY='123abcdefghijklmnopqrstuv'
+
+       >\#!/bin/bash    
+       >export AWS_ACCESS_KEY_ID='AKIA123456781234567'  
+       >export AWS_SECRET_ACCESS_KEY='123abcdefghijklmnopqrstuv'    
     
 
 #### 2. Run Ansible
 	
 - Execute the following: 
-> ansible-playbook deploy_elasticsearch.yml -vv --private-key=/path/to/ec2/key
+
+    > ansible-playbook deploy_elasticsearch.yml -vv --private-key=/path/to/ec2/key
+
 - Make sure the key has permissions for only the current user! 
 
 #### 3. Relax	
 
 
 - Or test your cluster by executing
->curl http://EC2PUBLICIPOFANODE:9200/_cluster/health?pretty=true
+
+    > curl http://EC2PUBLICIPOFANODE:9200/_cluster/health?pretty=true
 
 ---
 
 ####Quick fixes
 - If Ansible complains about the local host group not existing, you may need to add 127.0.0.1 under the [local] heading in your ansible hosts file.
 
-[1]:[http://docs.aws.amazon.com/gettingstarted/latest/wah/getting-started-security-group.html]
-[2]:[http://ansible.cc/]
+[1]: http://docs.aws.amazon.com/gettingstarted/latest/wah/getting-started-security-group.html
+[2]: http://ansible.cc/
